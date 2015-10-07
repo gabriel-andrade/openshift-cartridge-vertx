@@ -43,6 +43,13 @@ Endpoints:
         Backend:       ""
         Options:       { "websocket": 1}
   - Private-IP-Name:   IP
+    Private-Port-Name: TOMCAT_PORT
+    Private-Port:      8081
+    Public-Port-Name:  TOMCAT_PROXY_PORT
+    Mappings:
+      - Frontend:      "/tomcat"
+        Backend:       ""
+  - Private-IP-Name:   IP
     Private-Port-Name: HAZELCAST_PORT
     Private-Port:      5701
     Public-Port-Name:  HAZELCAST_PROXY_PORT
