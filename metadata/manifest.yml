@@ -44,7 +44,7 @@ Endpoints:
         Options:       { "websocket": 1}
   - Private-IP-Name:   IP
     Private-Port-Name: TOMCAT_PORT
-    Private-Port:      8081
+    Private-Port:      15001
     Public-Port-Name:  TOMCAT_PROXY_PORT
     Mappings:
       - Frontend:      "/tomcat"
