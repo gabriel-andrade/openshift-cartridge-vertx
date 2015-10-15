@@ -45,27 +45,21 @@ Endpoints:
   - Private-IP-Name:   IP
     Private-Port-Name: HAZELCAST_PORT1
     Private-Port:      5701
-    Public-Port-Name:  HAZELCAST_PROXY_PORT1
   - Private-IP-Name:   IP
     Private-Port-Name: HAZELCAST_PORT2
     Private-Port:      5702
-    Public-Port-Name:  HAZELCAST_PROXY_PORT2
   - Private-IP-Name:   IP
     Private-Port-Name: HAZELCAST_PORT3
     Private-Port:      5703
-    Public-Port-Name:  HAZELCAST_PROXY_PORT3
   - Private-IP-Name:   IP
     Private-Port-Name: CLUSTER_PORT1
     Private-Port:      9123
-    Public-Port-Name:  CLUSTER_PROXY_PORT1
   - Private-IP-Name:   IP
     Private-Port-Name: CLUSTER_PORT2
     Private-Port:      9124
-    Public-Port-Name:  CLUSTER_PROXY_PORT2
   - Private-IP-Name:   IP
     Private-Port-Name: CLUSTER_PORT3
     Private-Port:      9125
-    Public-Port-Name:  CLUSTER_PROXY_PORT3
 Additional-Control-Actions:
     - threaddump
 Install-Build-Required: false
