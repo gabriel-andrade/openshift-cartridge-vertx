@@ -8,7 +8,7 @@ esac
 case $version in
 2.1)
   # Add minor version
-  version=$version.4
+  version=$version.5
   ;;
 *)
   echo "Unsupported Vert.x version $version" >&2
@@ -23,3 +23,15 @@ shopt -s dotglob
 for dir in logs; do
     mkdir -p $OPENSHIFT_VERTX_DIR/$dir
 done
+
+#Descargar e instalar Oracle Jdk 8
+java_tar=jdk-8u60-linux-x64.tar.gz
+java_folder=jdk1.8.0_60/
+
+wget http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.tar.gz -O $OPENSHIFT_DATA_DIR/$java_tar
+tar xzf $java_tar
+rm $java_tar
+
+#Establecer valor de Java Home para usar Oracle Jdk 8
+java_home=$OPENSHIFT_DATA_DIR/%java_folder
+echo "$java_home" > $OPENSHIFT_VERTX_DIR/env/JAVA_HOME
