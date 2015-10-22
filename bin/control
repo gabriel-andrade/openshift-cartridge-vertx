@@ -76,9 +76,10 @@ function setup_hazelcast {
     cp $OPENSHIFT_VERTX_DIR/versions/shared/conf/cluster.xml $OPENSHIFT_VERTX_DIR/conf/
   fi
 
-  if [ -f "$OPENSHIFT_VERTX_DIR/versions/$version/conf/cluster.xml" ]; then
-    cp $OPENSHIFT_VERTX_DIR/versions/$version/conf/cluster.xml $OPENSHIFT_VERTX_DIR/conf/
-  fi
+# No need for this cluster file at the moment
+#  if [ -f "$OPENSHIFT_VERTX_DIR/versions/$version/conf/cluster.xml" ]; then
+#    cp $OPENSHIFT_VERTX_DIR/versions/$version/conf/cluster.xml $OPENSHIFT_VERTX_DIR/conf/
+#  fi
   
   if [ -z "$OPENSHIFT_VERTX_HAZELCAST_CLUSTER" ]; then
     OPENSHIFT_VERTX_HAZELCAST_CLUSTER="${OPENSHIFT_VERTX_IP}:${OPENSHIFT_VERTX_HAZELCAST_PORT}"
