@@ -43,23 +43,20 @@ Endpoints:
         Backend:       ""
         Options:       { "websocket": 1}
   - Private-IP-Name:   IP
-    Private-Port-Name: HAZELCAST_PORT1
+    Private-Port-Name: HAZELCAST_PORT_INTEGRATOR
     Private-Port:      5701
+    Public-Port-Name:  HAZELCAST_PROXY_PORT_INTEGRATOR
   - Private-IP-Name:   IP
-    Private-Port-Name: HAZELCAST_PORT2
-    Private-Port:      5702
-  - Private-IP-Name:   IP
-    Private-Port-Name: HAZELCAST_PORT3
-    Private-Port:      5703
-  - Private-IP-Name:   IP
-    Private-Port-Name: CLUSTER_PORT1
+    Private-Port-Name: CLUSTER_PORT_INTEGRATOR
     Private-Port:      9123
   - Private-IP-Name:   IP
-    Private-Port-Name: CLUSTER_PORT2
-    Private-Port:      9124
+    Private-Port-Name: HAZELCAST_PORT_SERVERSIDE
+    Private-Port:      5702
+    Public-Port-Name:  HAZELCAST_PROXY_PORT_SERVERSIDE
   - Private-IP-Name:   IP
-    Private-Port-Name: CLUSTER_PORT3
-    Private-Port:      9125
+    Private-Port-Name: CLUSTER_PORT_SERVERSIDE
+    Private-Port:      9124
+
 Additional-Control-Actions:
     - threaddump
 Install-Build-Required: false
