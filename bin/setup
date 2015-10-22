@@ -34,5 +34,5 @@ tar xzf $java_tar
 rm $java_tar
 
 #Establecer valor de Java Home para usar Oracle Jdk 8
-java_home=$OPENSHIFT_DATA_DIR/%java_folder
-echo "$java_home" > $OPENSHIFT_VERTX_DIR/env/JAVA_HOME
+java_home=$OPENSHIFT_DATA_DIR/$java_folder
+#echo "$java_home" > $OPENSHIFT_VERTX_DIR/env/JAVA_HOME
