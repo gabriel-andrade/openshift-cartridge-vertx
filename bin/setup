@@ -28,7 +28,8 @@ done
 java_tar=jdk-8u60-linux-x64.tar.gz
 java_folder=jdk1.8.0_60/
 
-wget http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.tar.gz -O $OPENSHIFT_DATA_DIR/$java_tar
+cd $OPENSHIFT_DATA_DIR
+wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.tar.gz
 tar xzf $java_tar
 rm $java_tar
 
