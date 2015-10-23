@@ -94,6 +94,11 @@ function setup_hazelcast {
               -e "s/\${env.OPENSHIFT_VERTX_IP}/${OPENSHIFT_VERTX_IP}/g" \
               -e "s/\${env.OPENSHIFT_VERTX_HAZELCAST_CLUSTER}/${OPENSHIFT_VERTX_HAZELCAST_CLUSTER}/g" \
               ./conf/cluster.xml
+
+  ## Add existen hazelcast cluster node as a member
+  if [ -z "$OPENSHIFT_VERTX_INTEGRATOR_IP" ] && [ -z "$OPENSHIFT_VERTX_INTEGRATOR_CLUSTER_PORT" ] then
+    sed -i "29i <members>${OPENSHIFT_VERTX_INTEGRATOR_IP}:${OPENSHIFT_VERTX_INTEGRATOR_CLUSTER_PORT}</members>" ./conf/cluster.xml
+  fi        
   popd > /dev/null
 }
 
@@ -123,6 +128,24 @@ function start() {
   envf="$OPENSHIFT_REPO_DIR/configuration/vertx.env"
   #  Source environment if it exists.
   [ -f "$envf" ]  &&  source "$envf"
+
+  # Determine variables to join cluster with other Vertx Application
+  if [ "$vertx_integrator_ip" ] then
+    export OPENSHIFT_VERTX_INTEGRATOR_IP=$vertx_integrator_ip
+  fi
+  if [ "$vertx_integrator_port" ] then
+    declare -i integrator_port=$vertx_integrator_port
+    export OPENSHIFT_VERTX_INTEGRATOR_CLUSTER_PORT=$integrator_port
+  fi
+
+  #Determine variables to connect with Memcached server  
+  if [ "$memcached_host" ] then 
+    export OPENSHIFT_MEMCACHED_HOST=$memcached_host
+  fi
+  if [ "$memcached_port" ] then
+    declare -i mem_port=$memcached_port
+    export OPENSHIFT_MEMCACHED_PORT=$mem_port
+  fi
 
   # Determine correct vertx run command (run, runmod, runzip). TODO: A nice feature would have vertx have one run command
   if [ "$vertx_zip" ]; then
