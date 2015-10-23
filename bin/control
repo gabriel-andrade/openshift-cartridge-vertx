@@ -96,7 +96,7 @@ function setup_hazelcast {
               ./conf/cluster.xml
 
   ## Add existen hazelcast cluster node as a member
-  if [ -z "$OPENSHIFT_VERTX_INTEGRATOR_IP" ] && [ -z "$OPENSHIFT_VERTX_INTEGRATOR_CLUSTER_PORT" ] then
+  if [ -z "$OPENSHIFT_VERTX_INTEGRATOR_IP" ] then
     sed -i "29i <members>${OPENSHIFT_VERTX_INTEGRATOR_IP}:${OPENSHIFT_VERTX_INTEGRATOR_CLUSTER_PORT}</members>" ./conf/cluster.xml
   fi        
   popd > /dev/null
