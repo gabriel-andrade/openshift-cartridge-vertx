@@ -130,12 +130,12 @@ function start() {
   [ -f "$envf" ]  &&  source "$envf"
 
   # Determine variables to join cluster with other Vertx Application
-  if [ "$vertx_integrator_ip" ]; then
-    export OPENSHIFT_VERTX_INTEGRATOR_IP=$vertx_integrator_ip
+  if [ "$vertx_cluster_member_ip" ]; then
+    export OPENSHIFT_VERTX_CLUSTER_MEMBER_IP=$vertx_cluster_member_ip
   fi
-  if [ "$vertx_integrator_port" ]; then
-    declare -i integrator_port=$vertx_integrator_port
-    export OPENSHIFT_VERTX_INTEGRATOR_CLUSTER_PORT=$integrator_port
+  if [ "$vertx_cluster_member_port" ]; then
+    declare -i member_port=$vertx_cluster_member_port
+    export OPENSHIFT_VERTX_CLUSTER_MEMBER_PORT=$vertx_cluster_member_port
   fi
 
   #Determine variables to connect with Memcached server  
@@ -188,6 +188,7 @@ function start() {
 
     export CLASSPATH=$OPENSHIFT_VERTX_DIR/conf
     export VERTX_JUL_CONFIG=$OPENSHIFT_VERTX_DIR/conf/logging.properties
+    export JAVA_HOME=/etc/alternatives/java_sdk_1.8.0
     $VERTX_HOME/bin/vertx $vertx_run $vertx_run_options $vertx_cluster >> $logf 2>&1 &
     
     PROCESS_ID=$!
