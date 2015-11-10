@@ -8,7 +8,7 @@ License-Url: http://www.eclipse.org/legal/epl-v10.html
 Vendor: Eclipse Foundation
 Cartridge-Version: 0.0.3
 Cartridge-Vendor: jboss
-Source-Url: https://github.com/gabriel-andrade/openshift-cartridge-vertx-integrator.git
+Source-Url: https://github.com/gabriel-andrade/openshift-cartridge-vertx.git
 Categories:
   - web_framework
   - community
