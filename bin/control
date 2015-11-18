@@ -85,10 +85,6 @@ function setup_hazelcast {
     OPENSHIFT_VERTX_HAZELCAST_CLUSTER="${OPENSHIFT_VERTX_IP}:${OPENSHIFT_VERTX_HAZELCAST_PORT}"
   fi
   
-  if [ ! -z "$OPENSHIFT_VERTX_CLUSTER_MEMBER_IP" ]; then
-    OPENSHIFT_VERTX_HAZELCAST_CLUSTER="${OPENSHIFT_VERTX_HAZELCAST_CLUSTER} ${OPENSHIFT_VERTX_CLUSTER_MEMBER_IP}:${OPENSHIFT_VERTX_CLUSTER_MEMBER_PORT}"
-  fi
-
   OPENSHIFT_VERTX_PROXY_IP=$(ping -c 1 ${OPENSHIFT_GEAR_DNS} | awk '{ print $3 ; exit }' | sed 's/(//g' | sed 's/)//g')
   
   pushd $OPENSHIFT_VERTX_DIR > /dev/null
@@ -99,10 +95,10 @@ function setup_hazelcast {
               -e "s/\${env.OPENSHIFT_VERTX_HAZELCAST_CLUSTER}/${OPENSHIFT_VERTX_HAZELCAST_CLUSTER}/g" \
               ./conf/cluster.xml
 
-  ## Add existen hazelcast cluster node as a member
-  #if [ ! -z "$OPENSHIFT_VERTX_CLUSTER_MEMBER_IP" ]; then
-  #  sed -i "29i <members>${OPENSHIFT_VERTX_CLUSTER_MEMBER_IP}:${OPENSHIFT_VERTX_CLUSTER_MEMBER_PORT}</members>" ./conf/cluster.xml
-  #fi        
+  ## Add existent hazelcast cluster node as a member
+  if [ ! -z "$OPENSHIFT_VERTX_CLUSTER_MEMBER_IP" ]; then
+    sed -i "29i \        <members>${OPENSHIFT_VERTX_CLUSTER_MEMBER_IP}:${OPENSHIFT_VERTX_CLUSTER_MEMBER_PORT}</members>" ./conf/cluster.xml
+  fi        
   popd > /dev/null
 }
 
