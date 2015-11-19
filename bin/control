@@ -95,7 +95,7 @@ function setup_hazelcast {
               -e "s/\${env.OPENSHIFT_VERTX_HAZELCAST_CLUSTER}/${OPENSHIFT_VERTX_HAZELCAST_CLUSTER}/g" \
               ./conf/cluster.xml
 
-  ## Add existen hazelcast cluster node as a member
+  ## Add existent hazelcast cluster node as a member
   if [ ! -z "$OPENSHIFT_VERTX_CLUSTER_MEMBER_IP" ]; then
     sed -i "29i \        <members>${OPENSHIFT_VERTX_CLUSTER_MEMBER_IP}:${OPENSHIFT_VERTX_CLUSTER_MEMBER_PORT}</members>" ./conf/cluster.xml
   fi        
@@ -163,7 +163,7 @@ function start() {
 
   # Setup max heap and permgen
   if [ -z "$JVM_HEAP_RATIO" ]; then
-    JVM_HEAP_RATIO=0.5
+    JVM_HEAP_RATIO=0.7
   fi
   if [ -z "$JVM_PERMGEN_RATIO" ]; then
     JVM_PERMGEN_RATIO=0.2
