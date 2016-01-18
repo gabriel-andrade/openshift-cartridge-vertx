@@ -130,19 +130,19 @@ function start() {
   [ -f "$envf" ]  &&  source "$envf"
 
   # Determine variables to join cluster with other Vertx Application
-  if [ "$vertx_cluster_member_ip" ]; then
+  if [ "$vertx_cluster_member_ip" ] && [ "$vertx_cluster_member_ip" -ne "NODE_IP" ]; then
     export OPENSHIFT_VERTX_CLUSTER_MEMBER_IP=$vertx_cluster_member_ip
   fi
-  if [ "$vertx_cluster_member_port" ]; then
+  if [ "$vertx_cluster_member_port" ]  && [ "$vertx_cluster_member_port" -ne "NODE_PORT" ]; then
     declare -i member_port=$vertx_cluster_member_port
     export OPENSHIFT_VERTX_CLUSTER_MEMBER_PORT=$vertx_cluster_member_port
   fi
 
   #Determine variables to connect with Memcached server  
-  if [ "$memcached_host" ]; then 
+  if [ "$memcached_host" ] && [ "$memcached_host" -ne "CACHE_HOST" ]; then 
     export OPENSHIFT_MEMCACHED_HOST=$memcached_host
   fi
-  if [ "$memcached_port" ]; then
+  if [ "$memcached_port" ]  && [ "$memcached_port" -ne "CACHE_PORT" ]; then
     declare -i mem_port=$memcached_port
     export OPENSHIFT_MEMCACHED_PORT=$mem_port
   fi
